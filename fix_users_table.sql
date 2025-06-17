@@ -1,0 +1,23 @@
+-- 先关闭外键检查
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- 重新创建users表
+DROP TABLE IF EXISTS users;
+
+CREATE TABLE users (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    student_id VARCHAR(255) NOT NULL,
+    username VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    nickname VARCHAR(255),
+    contact_info VARCHAR(255),
+    enabled BOOLEAN NOT NULL DEFAULT TRUE,
+    role VARCHAR(20) NOT NULL DEFAULT 'USER',
+    create_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    update_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    
+    UNIQUE KEY uk_student_id (student_id)
+);
+
+-- 重新启用外键检查
+SET FOREIGN_KEY_CHECKS = 1; 
